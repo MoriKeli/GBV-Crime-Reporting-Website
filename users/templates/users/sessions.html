@@ -1,0 +1,64 @@
+{% extends 'users/base.html' %}{% block title %}Your Appointments{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    {% block content %}
+    <main class="main" id="main">
+        <section class="section profile">
+            <div class="row">
+                <div class="col-xl-4">
+                    <div class="card">
+						<div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+							<img src="{{user.userprofile.profile_pic.url}}" alt="Profile" class="rounded-circle" style="border: 1px solid black">
+							<h2 class="text-center">{{user.userprofile.reg_user|title}}</h2>
+							<h3 class="text-center">{{user.userprofile.age|default:"Age"}} yrs | {{user.userprofile.gender|default:"Gender"}} | {{user.userprofile.location|default:"Location"}}</h3>
+						</div>
+					</div>
+                </div>
+                <div class="col-xl-8">
+                    <div class="card">
+                        <div class="card-body pt-3">
+                            <h5 class="text-end mb-0"><i class="bi bi-calendar2-day-fill" style="color: rgb(19, 19, 216);"></i> Scheduled appointments</h5><hr class="dropdown-divider">
+                            <div class="table-responsive-sm">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="table-active">
+                                            <th>Date</th>
+                                            <th>Medical Officer</th>
+                                            <th>Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for session in sessions %}
+                                        <tr>
+                                            <td class="col-md-5 pull-sm-10"><i class="bi bi-calendar2-check-fill" style="color: rgb(9, 9, 146); font-size: 25px;"></i> Date: {{ session.appointment_date }} <br>Time: {{ session.appointment_time}}</td>
+                                            <td>{{ session.medic }}<br>{{ session.patient.location }}</td>
+                                            <td class="text-center">
+                                                {% if session.company == 'Yes' %}You will be accompanied
+                                                {% else %}You will attend the session alone{% endif %}
+                                                {% if session.status %}{{ session.status }}{% else %}
+                                                <hr class="dropdown-divider"><button class="btn btn-primary btn-sm pr-1 pl-1 w-100">Pending... <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span></small>
+                                              {% endif %}
+                                            </td>
+                                        </tr>
+                                        {% empty %}
+                                        <tr><td colspan="3">No appointemnts available</td></tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+    {% endblock %}
+</body>
+</html>

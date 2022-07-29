@@ -1,0 +1,78 @@
+{% extends 'users/base.html' %}{% block title %}Frequently Asked Questions{% endblock %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<body>
+	{% block content %}
+	<main id="main" class="main">
+		<section class="section faq">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Frequently Asked Questions</h5>
+							<div class="accordion accordion-flush" id="faq-group-3">
+
+								<div class="accordion-item">
+									<h2 class="accordion-header">
+										<button class="accordion-button collapsed" data-bs-target="#faqsThree-1" type="button" data-bs-toggle="collapse">
+										Assumenda doloribus est fugiat sint incidunt animi totam nisi?
+										</button>
+									</h2>
+									<div id="faqsThree-1" class="accordion-collapse collapse" data-bs-parent="#faq-group-3">
+										<div class="accordion-body">
+										Ut quasi odit odio totam accusamus vero eius. Nostrum asperiores voluptatem eos nulla ab dolores est asperiores iure. Quo est quis praesentium aut maiores. Corrupti sed aut expedita fugit vero dolorem. Nemo rerum sapiente. A quaerat dignissimos.
+										</div>
+									</div>
+								</div>
+
+								<div class="accordion-item">
+									<h2 class="accordion-header">
+										<button class="accordion-button collapsed" data-bs-target="#faqsThree-2" type="button" data-bs-toggle="collapse">
+										Consequatur saepe explicabo odio atque nisi?
+										</button>
+									</h2>
+									<div id="faqsThree-2" class="accordion-collapse collapse" data-bs-parent="#faq-group-3">
+										<div class="accordion-body">
+										In minus quia impedit est quas deserunt deserunt et. Nulla non quo dolores minima fugiat aut saepe aut inventore. Qui nesciunt odio officia beatae iusto sed voluptatem possimus quas. Officia vitae sit voluptatem nostrum a.
+										</div>
+									</div>
+								</div>
+
+								<div class="accordion-item">
+									<h2 class="accordion-header">
+										<button class="accordion-button collapsed" data-bs-target="#faqsThree-3" type="button" data-bs-toggle="collapse">
+										Voluptates vel est fugiat molestiae rem sit eos sint?
+										</button>
+									</h2>
+									<div id="faqsThree-3" class="accordion-collapse collapse" data-bs-parent="#faq-group-3">
+										<div class="accordion-body">
+										Voluptates magni amet enim perspiciatis atque excepturi itaque est. Sit beatae animi incidunt eum repellat sequi ea saepe inventore. Id et vel et et. Nesciunt itaque corrupti quia ducimus. Consequatur maiores voluptatum fuga quod ut non fuga.
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="card">
+						<div class="card-body pt-3">
+							<h5 class="text-end">Need help <i class="bi bi-question-circle-fill" style="color: rgb(22, 209, 22);"></i></h5><hr class="dropdown-divider">
+							<form action="" method="post">{% csrf_token %}<div>{{faq_form|crispy}}</div><div><button class="btn btn-success btn-sm mt-1 btn-end" type="submit">Submit <i class="bi bi-cursor-fill"></i></button></div></form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	{% endblock %}
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends 'users/base.html' %}{% block title %}Create Account{% endblock %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	{% block content %}
+	<div class="form-container container" style="margin-top: 5%;">
+        <div class="row">
+            <div class="col-md-6 offset-sm-3">
+                <form action="" method="post" class="card card-body mt-5 p-3">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h5>Create Account</h5><hr class="dropdown-divider mt-0">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{signup_form.errors}}{{signup_form|crispy}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 d-grid">
+                            <button type="submit" class="btn btn-primary mt-2">Create account</button><hr class="dropdown-divider">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h6 class="text-center">If you have an account a click here to <a href="{% url 'user_login' %}">login</a></h6>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+	{% endblock %}
+</body>
+</html>

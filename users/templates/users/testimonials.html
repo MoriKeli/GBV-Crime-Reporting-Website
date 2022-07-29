@@ -1,0 +1,84 @@
+{% extends 'users/base.html' %}{% block title %}Testimonials{% endblock %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    {% block content %}
+    <main class="main" id="main">
+        <section class="section profile">
+            <div class="row">
+                <div class="col-xl-5">
+                    <div class="card mb-3">
+                        <div class="card-body pt-4 profile-card d-flex flex-column align-items-center">
+                            <img src="{{user.userprofile.profile_pic.url}}" alt="Profile" class="rounded-circle" style="border: 1px solid black">
+							<h2 class="text-center">{{user.userprofile.marital_status}} {% if user.userprofile.marital_status == 'Dating' %}<i class="bi bi-heart-fill" style="color: rgb(190, 19, 19)"></i>{% elif user.userprofile.marital_status == 'Engaged' %}<i class="bi bi-bookmark-heart-fill" style="color: rgb(192, 22, 22)"></i>{% elif user.userprofile.marital_status == 'Married' %}<i class="bi bi-people-fill" style="color: red"></i>{% endif %}</h2>
+							<h3 class="text-center">{{user.userprofile.age|default:"Age"}} yrs | {{user.userprofile.gender|default:"Gender"}} | {{user.userprofile.location|default:"Location"}}</h3>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body pt-3">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h5 class="mb-1"><i class="bi bi-share-fill" style="color: blue; font-size: 16px;"></i> Share your story</h5><hr class="dropdown-divider mt-1">
+                                </div>
+                                <div class="col-md-12">
+                                    <form action="" method="post">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <small>Let others know your experience and how you worked it out<hr class="mt-1"></small>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                {{form|crispy}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 d-grid">
+                                                <hr class="dropdown-divider mt-1"><button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-xl-7">
+                    <div class="card">
+                        <div class="card-body pt-3">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h5 class="text-end"><i class="bi bi-play-circle-fill" style="color: red;"></i> Testimonials</h5><hr class="dropdown-divider">
+                                </div>
+                            </div>
+                            {% for test in testimonials %}
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img src="{{test.victim.profile_pic.url}}" class="rounded-circle" height="70px" width="70px" alt="img">
+                                    
+                                </div>
+                                <div class="col-md-10">
+                                    <p class="mb-1">
+                                        {{test.experience}}
+                                    </p><hr class="dropdown-divider mb-1"><h6 class="form-text text-muted fw-bold text-end"><a href="" class="fw-bold text-end" style="font-size: 14px;"><i class="bi bi-pen-fill"></i> Edit</a> &centerdot; <a href="" class="fw-bold text-end" style="font-size: 13px;"><i class="bi bi-trash-fill"></i> Delete</a> &centerdot; {{test.created|timesince|slice:":7"}} ago</h6>
+                                    
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    {% endblock %}
+</body>
+</html>

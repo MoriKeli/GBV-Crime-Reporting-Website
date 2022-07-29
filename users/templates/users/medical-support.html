@@ -1,0 +1,60 @@
+{% extends 'users/base.html' %}{% block title %}Medical Support{% endblock %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    {% block content %}
+    <main class="main" id="main">
+        <section class="section profile">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                            <img src="{{user.userprofile.profile_pic.url}}" alt="Profile" class="rounded-circle" style="border: 1px solid black">
+                            <h2 class="text-center">{{user.userprofile.reg_user|title}}</h2>
+                            <h3 class="text-center">{{user.userprofile.age|default:"Age"}} yrs | {{user.userprofile.gender|default:"Gender"}} | {{user.userprofile.location|default:"Location"}}</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <hr class="dropdown-divider">
+                                    <h5 class="text-center"><i class="bi bi-clock-fill" style="color: #4154f1;"></i> Open Hours</h5>
+                                    <p class="mb-1">Monday - Friday (9AM - 5PM)</p>
+                                    <h6 class="text-center"><a href="{% url 'contact_us' user.userprofile.location  user.userprofile %}">Contact Me</a></h6>
+                                    <hr class="dropdown-divider mb-1">
+                                    <div class="modal fade" id="scheduleform" tabindex="-1">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Schedule appointment</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="" method="post">
+                                                        {% csrf_token %}
+                                                        {{schedule_form|crispy}}
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-primary">{% for message in messages %}{% if message.tags == 'warning' %}Reschedule {% endif %}{% empty %}Schedule appointment{% endfor %}</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% if messages %}{% for message in messages %}<div class="alert alert-{{message.tags}}"><small>{{message}} {% if message.tags == 'warning' %}<a href="{% url 'user_sessions' %}" data-bs-toggle="modal" data-bs-target="#scheduleform">Click here.</a>{% endif %}</small></div>{% endfor %}{% else %}<a href="{% url 'user_sessions' %}" class="btn btn-primary btn-sm w-100" data-bs-toggle="modal" data-bs-target="#scheduleform">Make an appointment</a>{% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+    {% endblock %}
+</body>
+</html>

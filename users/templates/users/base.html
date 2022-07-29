@@ -1,0 +1,305 @@
+{% load static %}
+    <link href="{% static 'images/favicon.png' %}" rel="icon">
+    <link href="{% static 'images/apple-touch-icon.png' %}" rel="apple-touch-icon">
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <title>GBV Report | {% block title %}{% endblock %}</title>
+
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-between">
+            {% if user.is_authenticated %}<a href="{% url 'user_homepage' %}" class="logo d-flex align-items-center">
+                <img src="{% static 'logo.png' %}" alt="logo">
+                <span class="d-none d-lg-block">NiceAdmin</span>
+            </a>{% else %}<a href="{% url 'user_login' %}" class="logo d-flex align-items-center"><img src="{% static 'logo.png' %}" alt="logo"><span class="d-none d-lg-block">NiceAdmin</span></a>{% endif %}
+            {% if user.is_authenticated %}<i class="bi bi-list toggle-sidebar-btn"></i>{% endif %}
+        </div>
+
+        {% if user.is_authenticated %}
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center mt-3" method="GET" action="#">
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+        </div>
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <li class="nav-item d-block d-lg-none">
+                <a class="nav-link nav-icon search-bar-toggle " href="#">
+                    <i class="bi bi-search"></i>
+                </a>
+                </li><!-- End Search Icon-->
+
+                <li class="nav-item dropdown">
+
+                <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                    <i class="bi bi-bell-fill"></i>
+                    <span class="badge bg-primary badge-number">4</span>
+                </a><!-- End Notification Icon -->
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                    <li class="dropdown-header">
+                    You have 4 new notifications
+                    <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                    </li>
+                    <li>
+                    <hr class="dropdown-divider">
+                    </li>
+
+                    <li class="notification-item">
+                    <i class="bi bi-exclamation-circle text-warning"></i>
+                    <div>
+                        <h4>Lorem Ipsum</h4>
+                        <p>Quae dolorem earum veritatis oditseno</p>
+                        <p>30 min. ago</p>
+                    </div>
+                    </li>
+
+                    <li>
+                    <hr class="dropdown-divider">
+                    </li>
+
+                    <li class="notification-item">
+                    <i class="bi bi-x-circle text-danger"></i>
+                    <div>
+                        <h4>Atque rerum nesciunt</h4>
+                        <p>Quae dolorem earum veritatis oditseno</p>
+                        <p>1 hr. ago</p>
+                    </div>
+                    </li>
+
+                    <li>
+                    <hr class="dropdown-divider">
+                    </li>
+
+                    <li class="notification-item">
+                    <i class="bi bi-check-circle text-success"></i>
+                    <div>
+                        <h4>Sit rerum fuga</h4>
+                        <p>Quae dolorem earum veritatis oditseno</p>
+                        <p>2 hrs. ago</p>
+                    </div>
+                    </li>
+
+                    <li>
+                    <hr class="dropdown-divider">
+                    </li>
+
+                    <li class="notification-item">
+                    <i class="bi bi-info-circle text-primary"></i>
+                    <div>
+                        <h4>Dicta reprehenderit</h4>
+                        <p>Quae dolorem earum veritatis oditseno</p>
+                        <p>4 hrs. ago</p>
+                    </div>
+                    </li>
+
+                    <li>
+                    <hr class="dropdown-divider">
+                    </li>
+                    <li class="dropdown-footer">
+                    <a href="#">Show all notifications</a>
+                    </li>
+
+                </ul><!-- End Notification Dropdown Items -->
+
+                </li><!-- End Notification Nav -->
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-chat-dots-fill"></i>
+                        <span class="badge bg-success badge-number">3</span>
+                    </a><!-- End Messages Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+                        <li class="dropdown-header">
+                        You have 3 new messages
+                        <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                        </li>
+                        <li>
+                        <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                        <a href="#">
+                            <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                            <div>
+                            <h4>Maria Hudson</h4>
+                            <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                            <p>4 hrs. ago</p>
+                            </div>
+                        </a>
+                        </li>
+                        <li>
+                        <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                        <a href="#">
+                            <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
+                            <div>
+                            <h4>Anna Nelson</h4>
+                            <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                            <p>6 hrs. ago</p>
+                            </div>
+                        </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
+                                <div>
+                                <h4>David Muldon</h4>
+                                <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                <p>8 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="dropdown-footer">
+                            <a href="#">Show all messages</a>
+                        </li>
+
+                    </ul><!-- End Messages Dropdown Items -->
+
+                </li><!-- End Messages Nav -->
+
+                <li class="nav-item dropdown pe-3">
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <img src="{{user.userprofile.profile_pic.url}}" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">{{user.userprofile.reg_user|title}}</span>
+                    </a><!-- End Profile Iamge Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6>{{user.userprofile.reg_user|title}}</h6>
+                            <span>{{user.userprofile.gender|default:"Unknown"}}</span>
+                        </li>
+                        
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{% url 'user_profile' %}">
+                                <i class="bi bi-person"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{% url 'logout_user' %}">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+        {% endif %}
+    </header>
+    {% if user.is_authenticated %}
+    <aside id="sidebar" class="sidebar">
+        <ul class="sidebar-nav" id="sidebar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_homepage' %}">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="bi bi-mic-fill"></i><span>Report crime</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'medic' %}">
+                    <i class="ri-clipboard-fill"></i><span>Medical Support</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="bi bi-camera-video-fill"></i><span>Join Meeting</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_sessions' %}">
+                    <i class="bi bi-calendar-day-fill"></i><span>Your Appointments</span>
+                </a>
+            </li>
+
+            <li class="nav-heading">Pages</li><hr class="dropdown-divider">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_profile' %}">
+                    <i class="bi bi-person-circle"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'testimonials' %}">
+                    <i class="bi bi-play-circle-fill"></i>
+                    <span>Testimonials</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'faq' %}">
+                    <i class="bi bi-question-circle-fill"></i>
+                    <span>F.A.Qs</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout_user' %}">
+                    <i class="bi bi-door-open-fill"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+    {% endif %}
+    {% block content %}
+    {% endblock %}
+    {% if user.is_authenticated %}
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            <strong>&copy; 2022 <span>GBV</span> | ALL RIGHTS RESERVED</strong>
+        </div>
+    </footer>
+    {% else %}
+    <footer class="footer">
+        <div class="copyright">
+            <strong>&copy; 2022 <span>GBV</span> | ALL RIGHTS RESERVED</strong>
+        </div>
+    </footer>
+    {% endif %}
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <script src="{% static 'apexcharts/apexcharts.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'chart.js/chart.min.js' %}"></script>
+    <script src="{% static 'echarts/echarts.min.js' %}"></script>
+    <script src="{% static 'main.js' %}"></script>

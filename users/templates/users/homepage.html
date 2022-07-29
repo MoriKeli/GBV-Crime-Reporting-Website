@@ -1,0 +1,407 @@
+{% extends 'users/base.html' %}{% block title %}Homepage{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="" name="description">
+	<meta content="" name="keywords">
+</head>
+<body>
+	{% block content %}
+	<main id="main" class="main">
+		<section class="section dashboard">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="row">
+						<div class="col-xxl-4 col-md-6">
+							<div class="card info-card gbv-card">
+								<div class="filter">
+									<a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+									<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+										<li class="dropdown-header text-start">
+											<h6>Filter</h6>
+										</li>
+										<li><a class="dropdown-item" href="#">Today</a></li>
+										<li><a class="dropdown-item" href="#">This Month</a></li>
+										<li><a class="dropdown-item" href="#">This Year</a></li>
+									</ul>
+								</div>
+
+								<div class="card-body">
+									<h5 class="card-title">GBV Reports <span>| Today</span></h5>
+									<div class="d-flex align-items-center">
+										<div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+											<i class="bi bi-bar-chart-fill"></i>
+										</div>
+										<div class="ps-3">
+											<h6>145</h6>
+											<span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xxl-4 col-md-6">
+							<div class="card info-card appointment-card">
+								<div class="filter">
+									<a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+									<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+										<li class="dropdown-header text-start">
+											<h6>Filter</h6>
+										</li>
+										<li><a class="dropdown-item" href="#">Today</a></li>
+										<li><a class="dropdown-item" href="#">This Month</a></li>
+										<li><a class="dropdown-item" href="#">This Year</a></li>
+									</ul>
+								</div>
+
+								<div class="card-body">
+									<h5 class="card-title">Your appointments <span>| This Month</span></h5>
+									<div class="d-flex align-items-center">
+										<div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+											<i class="bi bi-calendar-date-fill"></i>
+										</div>
+										<div class="ps-3">
+											<h6>3</h6>
+											<span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xxl-4 col-xl-12">
+							<div class="card">
+								<div class="card-body">
+									<h5 class="card-title mb-1">GBV info. slide <hr class="dropdown-divider mb-0"></h5>
+									<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+										<div class="carousel-indicators">
+											<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+											<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+											<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+										</div>
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+												<img src="{% static 'slides-1.jpg' %}" class="d-block w-100" alt="slide-img">
+											</div>
+											<div class="carousel-item">
+												<img src="{% static 'slides-2.jpg' %}" class="d-block w-100" alt="slide-img">
+											</div>
+											<div class="carousel-item">
+												<img src="{% static 'slides-3.jpg' %}" class="d-block w-100" alt="slide-img">
+											</div>
+										</div>
+						
+										<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+											<span class="visually-hidden">Previous</span>
+										</button>
+										<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+											<span class="carousel-control-next-icon" aria-hidden="true"></span>
+											<span class="visually-hidden">Next</span>
+										</button>
+
+									</div>
+					
+								</div>
+							  </div>
+						</div>
+
+						<div class="col-12">
+							<div class="card">
+								<div class="filter">
+									<a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+									<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+										<li class="dropdown-header text-start">
+										<h6>Filter</h6>
+										</li>
+
+										<li><a class="dropdown-item" href="#">Today</a></li>
+										<li><a class="dropdown-item" href="#">This Month</a></li>
+										<li><a class="dropdown-item" href="#">This Year</a></li>
+									</ul>
+								</div>
+								<div class="card-body">
+									<h5 class="card-title">Reports <span>/Today</span></h5>
+									<div id="reportsChart"></div>
+									<script>
+										document.addEventListener("DOMContentLoaded", () => {
+										new ApexCharts(document.querySelector("#reportsChart"), {
+											series: [{
+											name: 'Sales',
+											data: [31, 40, 28, 51, 42, 82, 56],
+											}, {
+											name: 'Revenue',
+											data: [11, 32, 45, 32, 34, 52, 41]
+											}, {
+											name: 'Customers',
+											data: [15, 11, 32, 18, 9, 24, 11]
+											}],
+											chart: {
+											height: 350,
+											type: 'area',
+											toolbar: {
+												show: false
+											},
+											},
+											markers: {
+											size: 4
+											},
+											colors: ['#4154f1', '#2eca6a', '#ff771d'],
+											fill: {
+											type: "gradient",
+											gradient: {
+												shadeIntensity: 1,
+												opacityFrom: 0.3,
+												opacityTo: 0.4,
+												stops: [0, 90, 100]
+											}
+											},
+											dataLabels: {
+											enabled: false
+											},
+											stroke: {
+											curve: 'smooth',
+											width: 2
+											},
+											xaxis: {
+											type: 'datetime',
+											categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+											},
+											tooltip: {
+											x: {
+												format: 'dd/MM/yy HH:mm'
+											},
+											}
+										}).render();
+										});
+									</script>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12">
+							<div class="card scheduled-sessions overflow-auto">
+								<div class="filter">
+									<a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+									<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+										<li class="dropdown-header text-start">
+											<h6>Filter</h6>
+										</li>
+										<li><a class="dropdown-item" href="#">Today</a></li>
+										<li><a class="dropdown-item" href="#">This Month</a></li>
+										<li><a class="dropdown-item" href="#">This Year</a></li>
+									</ul>
+								</div>
+
+								<div class="card-body">
+									<h5 class="card-title">Scheduled sessions <span>| Today</span></h5>
+									<table class="table table-borderless datatable">
+										<thead>
+											<tr>
+												<th scope="col">#</th>
+												<th scope="col">Medic</th>
+												<th scope="col">Session</th>
+												<th scope="col">Date</th>
+												<th scope="col">Time</th>
+												<th scope="col">Status</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for session in appointments %}
+											<tr>
+												<th scope="row"><a href="{% url 'user_sessions' %}">{{forloop.counter}}</a></th>
+												<td>{{ session.medic }}</td>
+												<td>{{ session.type_session }}</td>
+												<td>{{ session.appointment_date }}</td>
+												<td>{{ session.appointment_time }}</td>
+												<td><span class="badge bg-success">Approved</span></td>
+											</tr>
+											{% empty %}
+											<tr><td colspan="5" class="form-text text-muted text-center">No appointments available</td></tr>
+											{% endfor %}
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="col-lg-4">
+					<div class="card">
+						<div class="filter">
+							<a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+							<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+								<li class="dropdown-header text-start">
+								<h6>Filter</h6>
+								</li>
+
+								<li><a class="dropdown-item" href="#">Today</a></li>
+								<li><a class="dropdown-item" href="#">This Month</a></li>
+								<li><a class="dropdown-item" href="#">This Year</a></li>
+							</ul>
+						</div>
+
+						<div class="card-body">
+							<h5 class="card-title"><i class="bi bi-play-circle-fill" style="color: red;"></i> Testimonials <span>| Today</span></h5>
+							<div class="activity">
+								<hr class="dropdown-divider mt-0">
+								
+								<div class="activity-item d-flex">
+									<img src="{{user.userprofile.profile_pic.url}}" class="rounded-circle" height="65px" width="65px" alt="imgs">
+									<div class="activity-content">
+										<a href="{% url 'testimonials' %}" class="fw-bold text-dark">Quia quae rerum explicabo officiis beatae</a>
+										<div class="activite-label">32 min ago</div>
+									</div>									
+								</div>
+								<hr class="dropdown-divider mt-0">
+								
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="filter">
+							<a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+							<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+								<li class="dropdown-header text-start">
+								<h6>Filter</h6>
+								</li>
+
+								<li><a class="dropdown-item" href="#">Today</a></li>
+								<li><a class="dropdown-item" href="#">This Month</a></li>
+								<li><a class="dropdown-item" href="#">This Year</a></li>
+							</ul>
+						</div>
+
+						<div class="card-body pb-0">
+							<h5 class="card-title">GBV Crime Rate <span>| Today</span></h5>
+
+							<div id="trafficChart" style="min-height: 400px;" class="echart"></div>
+
+							<script>
+								document.addEventListener("DOMContentLoaded", () => {
+								echarts.init(document.querySelector("#trafficChart")).setOption({
+									tooltip: {
+									trigger: 'item'
+									},
+									legend: {
+									top: '5%',
+									left: 'center'
+									},
+									series: [{
+									name: 'Access From',
+									type: 'pie',
+									radius: ['40%', '70%'],
+									avoidLabelOverlap: false,
+									label: {
+										show: false,
+										position: 'center'
+									},
+									emphasis: {
+										label: {
+										show: true,
+										fontSize: '18',
+										fontWeight: 'bold'
+										}
+									},
+									labelLine: {
+										show: false
+									},
+									data: [{
+										value: 1048,
+										name: 'Search Engine'
+										},
+										{
+										value: 735,
+										name: 'Direct'
+										},
+										{
+										value: 580,
+										name: 'Email'
+										},
+										{
+										value: 484,
+										name: 'Union Ads'
+										},
+										{
+										value: 300,
+										name: 'Video Ads'
+										}
+									]
+									}]
+								});
+								});
+							</script>
+
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="filter">
+							<a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+							<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+								<li class="dropdown-header text-start">
+								<h6>Filter</h6>
+								</li>
+
+								<li><a class="dropdown-item" href="#">Today</a></li>
+								<li><a class="dropdown-item" href="#">This Month</a></li>
+								<li><a class="dropdown-item" href="#">This Year</a></li>
+							</ul>
+						</div>
+
+						<div class="card-body pb-0">
+							<h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
+
+							<div class="news">
+								<div class="post-item clearfix">
+								<img src="assets/img/news-1.jpg" alt="">
+								<h4><a href="#">Nihil blanditiis at in nihil autem</a></h4>
+								<p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...</p>
+								</div>
+
+								<div class="post-item clearfix">
+								<img src="assets/img/news-2.jpg" alt="">
+								<h4><a href="#">Quidem autem et impedit</a></h4>
+								<p>Illo nemo neque maiores vitae officiis cum eum turos elan dries werona nande...</p>
+								</div>
+
+								<div class="post-item clearfix">
+								<img src="assets/img/news-3.jpg" alt="">
+								<h4><a href="#">Id quia et et ut maxime similique occaecati ut</a></h4>
+								<p>Fugiat voluptas vero eaque accusantium eos. Consequuntur sed ipsam et totam...</p>
+								</div>
+
+								<div class="post-item clearfix">
+								<img src="assets/img/news-4.jpg" alt="">
+								<h4><a href="#">Laborum corporis quo dara net para</a></h4>
+								<p>Qui enim quia optio. Eligendi aut asperiores enim repellendusvel rerum cuder...</p>
+								</div>
+
+								<div class="post-item clearfix">
+								<img src="assets/img/news-5.jpg" alt="">
+								<h4><a href="#">Et dolores corrupti quae illo quod dolor</a></h4>
+								<p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...</p>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+	</main>
+	{% endblock %}
+</body>
+</html>
